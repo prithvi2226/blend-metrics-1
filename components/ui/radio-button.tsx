@@ -42,24 +42,29 @@ const iconVariants = cva("fill-current text-current", {
 
 interface RadioButtonProps
   extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>,
-    VariantProps<typeof radioGroupItemVariants> {}
+    VariantProps<typeof radioGroupItemVariants> {
+      value: string;
+    }
 
-const RadioButton = React.forwardRef<
+  const RadioButton = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
   RadioButtonProps
->(({ className, children, size, ...props }, ref) => {
+  >(({ className, children, size, value, ...props }, ref) => {
   return (
     <RadioGroupPrimitive.Item
       ref={ref}
       className={cn(radioGroupItemVariants({ size, className }))}
+      value={value} // Pass the value prop to RadioGroupPrimitive.Item
       {...props}
     >
       <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
         <Circle className={iconVariants({ size })} />
       </RadioGroupPrimitive.Indicator>
+      {children}
     </RadioGroupPrimitive.Item>
   );
-});
+  });
+  
 RadioButton.displayName = "RadioButton";
 
 export { RadioButton, RadioGroupItem, RadioGroupItemIndicator };

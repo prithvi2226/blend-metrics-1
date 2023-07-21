@@ -34,9 +34,8 @@ const excessVariants = cva(
   }
 );
 
-interface AvatarGroupProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof avatarGroupVariants> {
+interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement>, 
+                                    VariantProps<typeof avatarGroupVariants> {
   max?: number;
   excessClassName?: string;
 }
